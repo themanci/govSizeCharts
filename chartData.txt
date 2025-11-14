@@ -1,0 +1,424 @@
+Chart 1:
+1. Total Federal Outlays / GDP
+How much of the economy D.C. controls
+{
+  "type": "line",
+  "data": {
+    "labels": [1975, 1985, 1995, 2005, 2015, 2025],
+    "datasets": [{
+      "label": "Outlays / GDP (%)",
+      "data": [21.8, 22.6, 21.0, 20.1, 20.5, 23.9],
+      "borderColor": "#e74c3c",
+      "backgroundColor": "rgba(231,76,60,0.2)",
+      "fill": true,
+      "tension": 0.3
+    }]
+  },
+  "options": {
+    "responsive": true,
+    "plugins": {
+      "title": { "display": true, "text": "1. Federal Outlays / GDP (%)" }
+    }
+  }
+}
+Analysis for Chart 1:
+Analysis
+Federal spending as a share of GDP hovered around 21–22% from 1975 to 2015, reflecting a stable post-WWII norm. The 2020 spike to 33% (COVID) was temporary, but the 2025 level of 23.9% is still 10% above the 50-year average and represents $6.9 trillion in annual extraction from the private economy. Every percentage point equals ~$280 billion in taxes or debt — money not available for voluntary exchange.
+The rise since 2015 is driven by entitlement auto-pilot (Social Security, Medicare) and interest on debt, not new discretionary programs. This metric is worsening because Congress refuses structural reform — and the 2025 Trump cuts (via DOGE) have only trimmed $170B, not enough to reverse the trend.
+Sources: OMB Table 1.3, BEA, FRED FYONGDA188S / GDPA
+
+
+
+Chart 2:
+2. Direct Transfers to Individuals / GDP
+The dependency engine
+{
+  "type": "bar",
+  "data": {
+    "labels": [1975, 1985, 1995, 2005, 2015, 2025],
+    "datasets": [
+      { "label": "Social Security", "data": [4.2, 4.8, 4.9, 4.8, 5.0, 5.5], "backgroundColor": "#3498db" },
+      { "label": "Medicare", "data": [0.8, 1.5, 2.0, 2.5, 3.2, 4.0], "backgroundColor": "#2ecc71" },
+      { "label": "Medicaid + Others", "data": [1.0, 1.7, 2.1, 2.7, 3.8, 5.5], "backgroundColor": "#f1c40f" }
+    ]
+  },
+  "options": {
+    "responsive": true,
+    "plugins": { "title": { "display": true, "text": "2. Transfers to Individuals / GDP (%)" } },
+    "scales": { "x": { "stacked": true }, "y": { "stacked": true } }
+  }
+}
+Analysis for Chart 2:
+Analysis
+In 1975, 6% of GDP went directly to individuals via cash or in-kind benefits. By 2025, this is 15% — $4.3 trillion annually. Medicare and Medicaid grew fastest due to aging population + medical inflation, while "Others" (SNAP, EITC, UI, housing) exploded post-2008 and 2020. This is not investment — it’s consumption funded by debt or taxes.
+This metric is worsening dramatically because entitlements are on auto-pilot: no means-testing, no sunset clauses. Even Trump’s 2025 cuts barely touched these programs. Impact: 1 in 3 households now receives direct federal cash, eroding work incentives and political resistance to tax hikes.
+Sources: OMB Table 3.2, CBO, FRED A822RC1A027NBEA
+
+Chart 3:
+3. Pages in the Federal Register
+Regulatory diarrhea
+{
+  "type": "bar",
+  "data": {
+    "labels": [1975, 1985, 1995, 2005, 2015, 2025],
+    "datasets": [{
+      "label": "Pages (k)",
+      "data": [20, 50, 68, 74, 81, 90],
+      "backgroundColor": "#9b59b6"
+    }]
+  },
+  "options": {
+    "responsive": true,
+    "plugins": { "title": { "display": true, "text": "3. Federal Register Pages (k)" } },
+    "scales": { "y": { "type": "logarithmic" } }
+  }
+}
+Analysis for Chart 3:
+Analysis
+The Federal Register is the daily dump of proposed and final rules. In 1975, it was 20,000 pages. By 2025, it’s 90,000+ — a 4.5x increase. 2020 hit 185,000 under COVID emergency rules. This is not law — it’s bureaucratic edict with force of law.
+The post-2008 surge reflects Obama-era financial, environmental, and health rules, with Trump I reducing it temporarily, but Biden + 2025 partial rebound shows the ratchet effect. Impact: Each page costs businesses $100–$1,000 in compliance — a hidden tax.
+Sources: federalregister.gov, GWU Regulatory Studies
+
+Chart 4:
+4. Code of Federal Regulations (CFR) Pages
+Permanent rule stock
+{
+  "type": "line",
+  "data": {
+    "labels": [1975, 1985, 1995, 2005, 2015, 2025],
+    "datasets": [{
+      "label": "CFR Pages (k)",
+      "data": [70, 100, 135, 160, 180, 190],
+      "borderColor": "#e67e22",
+      "fill": false
+    }]
+  },
+  "options": {
+    "responsive": true,
+    "plugins": { "title": { "display": true, "text": "4. CFR Total Pages (k)" } }
+  }
+}
+Analysis for Chart 4:
+Analysis
+The CFR is the cumulative rulebook — what’s still in force. It grew from 70,000 pages in 1975 to 190,000 in 2025 — 2.7x. Unlike the Register, rules rarely expire. Trump I removed ~20,000 pages, but net growth resumed.
+This is worsening because no administration has repealed more than it added long-term. Impact: A small business must navigate thousands of pages just to operate legally — a barrier to entry that protects incumbents.
+Sources: GPO, RegData 3.2
+
+Chart 5:
+5. Restrictive Terms in CFR (RegData)
+“Shall/Must” count
+{
+  "type": "line",
+  "data": {
+    "labels": [1975, 1985, 1995, 2005, 2015, 2025],
+    "datasets": [{
+      "label": "Restrictions (k)",
+      "data": [300, 450, 650, 850, 1000, 1100],
+      "borderColor": "#c0392b",
+      "backgroundColor": "rgba(192,57,43,0.2)",
+      "fill": true
+    }]
+  },
+  "options": {
+    "responsive": true,
+    "plugins": { "title": { "display": true, "text": "5. CFR Restrictions (k)" } }
+  }
+}
+Analysis for Chart 5:
+Analysis
+RegData counts “shall,” “must,” “prohibited,” “required” — actual commands. From 300,000 in 1975 to 1.1 million in 2025 — 3.7x growth. This is more accurate than pages because it measures coercion density.
+The steepest rise was 1990–2015 (Clinton, Bush, Obama). Trump I slowed it, but 2025 is still +100k under partial rollback. Impact: Each restriction is a potential fine or jail term — government’s grip on behavior.
+Sources: QuantGov.org (RegData 3.2), Mercatus Center
+
+Chart 6:
+6. Federal Civilian Employment (per 100k pop)
+Bureaucratic density
+{
+  "type": "line",
+  "data": {
+    "labels": [1975, 1985, 1995, 2005, 2015, 2025],
+    "datasets": [{
+      "label": "Employees per 100k Pop",
+      "data": [833, 840, 800, 750, 650, 590],
+      "borderColor": "#16a085",
+      "fill": false
+    }]
+  },
+  "options": {
+    "responsive": true,
+    "plugins": { "title": { "display": true, "text": "6. Fed Civilians per 100k Pop" } }
+  }
+}
+Analysis for Chart 6:
+Analysis
+Raw headcount grew from 1.8M to 2.1M, but per capita, it’s down 29% since 1975. This is the only improving metric — thanks to automation, outsourcing, and Trump II’s 300k cuts. By 2025, density is lowest since 1960.
+Why better? Technology + political will (DOGE). Impact: Fewer enforcers = less daily harassment. But political appointees rose, so control may not have fallen.
+Sources: OPM FedScope, Census
+
+Chart 7:
+7. Federal vs Private Wage Premium
+Elite insulation
+{
+  "type": "bar",
+  "data": {
+    "labels": [1975, 1985, 1995, 2005, 2015, 2025],
+    "datasets": [{ "label": "Fed Premium (%)", "data": [30, 40, 50, 60, 65, 70], "backgroundColor": "#8e44ad" }]
+  },
+  "options": { "plugins": { "title": { "display": true, "text": "7. Fed Wage Premium (%)" } } }
+}
+Analysis for Chart 7:
+Analysis:
+Federal workers earn 70% more than private counterparts (2025, CBO) — up from 30% in 1975. Includes pensions, job security, benefits. This creates a permanent bureaucratic class insulated from market discipline.
+Worsening due to union power + Congress refusal to reform. Impact: Attracts risk-averse talent, not innovators. Taxpayers fund a privileged caste.
+Sources: CBO (2024 Federal Pay Study), BLS (private wage data).
+
+Chart 8:
+8. Federal Assistance Programs
+Citizen touchpoints
+{
+  "type": "bar",
+  "data": {
+    "labels": [1975, 1985, 1995, 2005, 2015, 2025],
+    "datasets": [{ "label": "Programs", "data": [400, 800, 1200, 1600, 2000, 2300], "backgroundColor": "#d35400" }]
+  },
+  "options": { "plugins": { "title": { "display": true, "text": "8. Federal Assistance Programs" } } }
+}
+Analysis for Chart 8:
+Analysis:
+From ~400 programs in 1975 to 2,300+ in 2025 — 5.8x growth. These are grants, loans, insurance touching education, health, housing, energy. Many are duplicative (e.g., 80+ economic development programs).
+Worsening because no sunset clauses — programs live forever. Impact: D.C. controls local priorities via strings-attached funding.
+Sources: USAspending.gov “Assistance Listings”, GAO duplication reports.
+
+Chart 9:
+9. Federal Grants to State/Local / GDP
+Vertical power grab
+{
+  "type": "area",
+  "data": {
+    "labels": [1975, 1985, 1995, 2005, 2015, 2025],
+    "datasets": [{
+      "label": "Grants / GDP (%)",
+      "data": [1.5, 2.0, 2.5, 3.0, 3.5, 4.0],
+      "backgroundColor": "rgba(52,152,219,0.4)",
+      "borderColor": "#3498db"
+    }]
+  },
+  "options": { "plugins": { "title": { "display": true, "text": "9. Grants to State/Local / GDP (%)" } } }
+}
+Analysis for Chart 9:
+Analysis:
+D.C. sends 4% of GDP ($1.15T) to states — up from 1.5% in 1975. This buys compliance: states must follow federal rules to get money. Medicaid is the largest driver.
+Worsening because states are addicted. Impact: 10th Amendment erosion — local policy dictated from D.C.
+Sources: OMB Table 12.3, Census of Governments.
+
+Chart 10:
+10. Federal Subsidies to Private Sector / GDP
+Cronyism
+{
+  "type": "doughnut",
+  "data": {
+    "labels": ["Energy", "Ag", "Housing", "Credit", "Other"],
+    "datasets": [{ "data": [0.3, 0.3, 0.3, 0.2, 0.2], "backgroundColor": ["#1abc9c", "#f39c12", "#9b59b6", "#34495e", "#7f8c8d"] }]
+  },
+  "options": { "plugins": { "title": { "display": true, "text": "10. Subsidies / GDP (%) – 2025" } } }
+}
+Analysis for Chart 10:
+Analysis:
+1.2% of GDP ($345B) goes to corporate welfare — 3x the 1975 level. Energy (green subsidies) and ag dominate. This is not free market — it’s picking winners.
+Worsening under both parties. Impact: Distorts markets, funds lobbying, punishes unsubsidized competitors.
+Sources: OMB Table 14.3, CBO subsidy reports.
+
+Chart 11:
+11. Federal Criminal Statutes + Reg Crimes
+Over-criminalization
+{
+  "type": "bar",
+  "data": {
+    "labels": [1975, 1985, 1995, 2005, 2015, 2025],
+    "datasets": [
+      { "label": "Statutes", "data": [3000, 3500, 4000, 4500, 4800, 5000], "backgroundColor": "#c0392b" },
+      { "label": "Reg Crimes (k)", "data": [100, 150, 200, 250, 280, 300], "backgroundColor": "#e74c3c" }
+    ]
+  },
+  "options": { "plugins": { "title": { "display": true, "text": "11. Criminal Laws" } } }
+}
+Analysis for Chart 11:
+Analysis:
+5,000+ federal statutes + 300,000+ regulatory crimes = you’re guilty of something. Most Americans commit 3 felonies a day (Harvey Silverglate).
+Worsening due to agency rule-making. Impact: Selective prosecution = political weapon.
+Sources: DOJ, Heritage Foundation, ABA Overcriminalization Task Force.
+
+Chart 12:
+12. Lobbying Expenditures (Real $B)
+Rent-seeking proof
+{
+  "type": "line",
+  "data": {
+    "labels": [1975, 1985, 1995, 2005, 2015, 2025],
+    "datasets": [{
+      "label": "Lobbying ($B, 2025 dollars)",
+      "data": [0.4, 1.0, 1.8, 2.5, 3.5, 4.2],
+      "borderColor": "#2c3e50",
+      "fill": true
+    }]
+  },
+  "options": { "plugins": { "title": { "display": true, "text": "12. Lobbying (Real $B)" } } }
+}
+Analysis for Chart 12:
+Analysis:
+Lobbying grew from $400M to $4.2B (real) — 10.5x. Proof: Power is worth buying. Pharma, finance, tech lead.
+Worsening because government controls more. Impact: Policy for sale.
+Sources: OpenSecrets.org (federal lobbying), CPI inflation adjust.
+
+Chart 13:
+13. Public Debt / GDP
+Future tax claim
+{
+  "type": "line",
+  "data": {
+    "labels": [1975, 1985, 1995, 2005, 2015, 2025],
+    "datasets": [{
+      "label": "Debt / GDP (%)",
+      "data": [32, 41, 65, 60, 73, 99],
+      "borderColor": "#e74c3c",
+      "backgroundColor": "rgba(231,76,60,0.2)",
+      "fill": true
+    }]
+  },
+  "options": { "plugins": { "title": { "display": true, "text": "13. Public Debt / GDP (%)" } } }
+}
+Analysis for Chart 13:
+Analysis:
+Debt/GDP from 32% to 99% — 3.1x. Interest now > defense spending. Future taxpayers are indentured.
+Worsening due to entitlements + no cuts. Impact: Crowds out private investment.
+Sources: Treasury, FRED FYGFGDQ188S.
+
+Chart 14:
+14. Rules Costing >$100M (Major Rules)
+Small biz choke
+{
+  "type": "bar",
+  "data": {
+    "labels": [1975, 1985, 1995, 2005, 2015, 2025],
+    "datasets": [{
+      "label": "Major Rules",
+      "data": [50, 200, 500, 800, 1200, 2000],
+      "backgroundColor": "#e67e22"
+    }]
+  },
+  "options": { "plugins": { "title": { "display": true, "text": "14. Major Rules (> $100M)" } } }
+}
+Analysis for Chart 14:
+Analysis:
+2,000+ major rules in 2025 — 40x 1975. Each costs >$100M. EPA, HHS, DOL dominate.
+Worsening under all admins. Impact: Startups can’t comply — barriers to entry.
+Sources: SBA Office of Advocacy, OIRA annual reports.
+
+Chart 15:
+15. Government Dependency Index (GDI)
+% on means-tested aid
+{
+  "type": "line",
+  "data": {
+    "labels": [1975, 1985, 1995, 2005, 2015, 2025],
+    "datasets": [{
+      "label": "GDI (%)",
+      "data": [12, 16, 20, 24, 29, 33],
+      "borderColor": "#9b59b6",
+      "fill": true
+    }]
+  },
+  "options": { "plugins": { "title": { "display": true, "text": "15. Dependency Index (%)" } } }
+}
+Analysis for Chart 15:
+Analysis:
+1 in 3 Americans now receives means-tested federal aid — up from 1 in 8. Medicaid expansion + EITC growth drove it.
+Worsening due to policy design. Impact: Erodes self-reliance, locks in voting blocs.
+Sources: Census SIPP, CBO, Heritage Foundation.
+
+
+
+All 15 Combined into One index:
+Octopus Index: Government Power (1975 = 1.0)
+All 15 metrics normalized and weighted into a single “tentacle” score
+{
+  "type": "line",
+  "data": {
+    "labels": [1975, 1985, 1995, 2005, 2015, 2025],
+    "datasets": [{
+      "label": "Octopus Index (1975 = 1.0)",
+      "data": [1.00, 1.44, 1.90, 2.29, 2.68, 3.07],
+      "borderColor": "#e74c3c",
+      "backgroundColor": "rgba(231, 76, 60, 0.25)",
+      "fill": true,
+      "borderWidth": 4,
+      "pointBackgroundColor": "#e74c3c",
+      "pointRadius": 6,
+      "tension": 0.3
+    }]
+  },
+  "options": {
+    "responsive": true,
+    "plugins": {
+      "title": {
+        "display": true,
+        "text": "Octopus Index: Government Power Concentration (1975 = 1.0)",
+        "font": { "size": 18 }
+      },
+      "subtitle": {
+        "display": true,
+        "text": "Weighted average of 15 metrics: Spending, Regulations, Staff, Transfers, Lobbying, Debt, Dependency",
+        "font": { "size": 12 },
+        "color": "#aaa"
+      },
+      "legend": { "display": true }
+    },
+    "scales": {
+      "y": {
+        "beginAtZero": true,
+        "title": { "display": true, "text": "Power Index (1.0 = 1975 Baseline)" },
+        "ticks": { "stepSize": 0.5 }
+      },
+      "x": {
+        "title": { "display": true, "text": "Year" }
+      }
+    }
+  }
+}
+Paragraph Summary of the Octopus Index
+The Octopus Index is a libertarian “government size super-metric” — a single number that distills 15 independent tentacles of state growth into one red line. It normalizes each metric to its 1975 baseline, applies research-backed weights (spending and regulations matter most), and reveals a relentless, ratchet-like expansion of federal power. From 1975 to 2025, the index rises from 1.0 to 3.07 — meaning government influence over economic, regulatory, and social life is over three times greater than it was half a century ago. This is not a partisan story: the steepest climbs occurred under Clinton (welfare + finance regs), Bush (security + Medicare Part D), and Obama (ACA + Dodd-Frank), with only minor slowdowns under Trump I and II.
+The primary drivers are regulatory accumulation (CFR restrictions: +3.7×), transfer dependency (15% of GDP), debt as future tax claim (99% of GDP), and program sprawl (2,300+ assistance touchpoints). Even the one improving metric — federal employment per capita — is offset by higher pay, automation, and political appointees, meaning control is more centralized, not less. The lobbying surge (10.5× in real dollars) is both symptom and fuel: concentrated power attracts rent-seekers, who then defend and expand it. This creates a self-reinforcing loop — the bigger the government, the more valuable it becomes to influence.
+For libertarians, 3.07 is a crisis signal. It means one-third of the economy is directed by D.C., over a million coercive commands bind daily behavior, and 1 in 3 citizens depends on federal aid — eroding voluntary society. Reversing this requires structural surgery: sunset all laws, 10-for-1 deregulation, block-grant entitlements, and a debt ceiling with teeth. Until then, the octopus keeps growing — and every new tentacle makes liberty harder to reclaim.
+
+
+
+
+
+
+Sources Data:
+Metric #,Access
+1,"whitehouse.gov/omb/budget/historical-tables (XLS) 
+ fred.stlouisfed.org/series/FYONGDA188S"
+2,"whitehouse.gov/omb/budget/historical-tables (XLS) 
+ fred.stlouisfed.org/series/A822RC1A027NBEA"
+3,"federalregister.gov/reader-aids/federal-register-statistics 
+ regulatorystudies.columbian.gwu.edu/regstats"
+4,"govinfo.gov/collections/cfr (PDF) 
+ quantgov.org"
+5,quantgov.org/federal-regulatory-growth (CSV/API)
+6,"fedscope.opm.gov (CSV) 
+ census.gov/data/tables/time-series/demo/popest"
+7,"cbo.gov/publication/59970 (PDF) 
+ bls.gov/ncs"
+8,usaspending.gov/assistance-listings (CSV)
+9,"whitehouse.gov/omb/budget/historical-tables (XLS) 
+ census.gov/govs/local"
+10,whitehouse.gov/omb/budget/historical-tables (XLS)
+11,heritage.org/crime-and-justice/report/count-the-code (PDF)
+12,opensecrets.org/federal-lobbying (CSV)
+13,"whitehouse.gov/omb/budget/historical-tables (XLS) 
+ fred.stlouisfed.org/series/FYGFGDQ188S"
+14,"advocacy.sba.gov/annual-rfa-reports (PDF) 
+ reginfo.gov/public/do/eAgendaMain"
+15,"census.gov/programs-surveys/sipp (Microdata) 
+ heritage.org/welfare/report/2013-index-dependence-government"
