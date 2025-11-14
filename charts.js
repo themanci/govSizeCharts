@@ -617,7 +617,7 @@ function scrollToChart(chartId) {
 }
 
 // Copy to Clipboard function
-function copyToClipboard(sectionId) {
+function copyToClipboard(sectionId, buttonElement) {
     const section = document.getElementById(sectionId);
     if (!section) {
         alert('Section not found');
@@ -650,14 +650,13 @@ ${analysis.trim()}`;
     navigator.clipboard.writeText(textToCopy)
         .then(() => {
             // Show success feedback
-            const button = event.target;
-            const originalText = button.textContent;
-            button.textContent = '✓ Copied!';
-            button.style.backgroundColor = '#27ae60';
+            const originalText = buttonElement.textContent;
+            buttonElement.textContent = '✓ Copied!';
+            buttonElement.style.backgroundColor = '#27ae60';
             
             setTimeout(() => {
-                button.textContent = originalText;
-                button.style.backgroundColor = '';
+                buttonElement.textContent = originalText;
+                buttonElement.style.backgroundColor = '';
             }, 2000);
         })
         .catch(err => {
