@@ -616,11 +616,18 @@ function scrollToChart(chartId) {
     event.target.classList.add('active');
 }
 
-// Copy to Clipboard function
+// Copy to Clipboard function - copies both chart image and text
 function copyToClipboard(sectionId, buttonElement) {
     const section = document.getElementById(sectionId);
     if (!section) {
         alert('Section not found');
+        return;
+    }
+
+    // Find the canvas element (chart)
+    const canvas = section.querySelector('canvas');
+    if (!canvas) {
+        alert('Chart not found');
         return;
     }
 
@@ -646,22 +653,36 @@ ${description}
 
 ${analysis.trim()}`;
 
-    // Use Clipboard API to copy text
-    navigator.clipboard.writeText(textToCopy)
-        .then(() => {
-            // Show success feedback
-            const originalText = buttonElement.textContent;
-            buttonElement.textContent = '✓ Copied!';
-            buttonElement.style.backgroundColor = '#27ae60';
-            
-            setTimeout(() => {
-                buttonElement.textContent = originalText;
-                buttonElement.style.backgroundColor = '';
-            }, 2000);
-        })
-        .catch(err => {
-            console.error('Failed to copy:', err);
-            alert('Failed to copy to clipboard');
+    // Convert canvas to blob
+    canvas.toBlob(blob => {
+        if (!blob) {
+            alert('Failed to convert chart to image');
+            return;
+        }
+
+        // Create ClipboardItem with both image and text
+        const clipboardItem = new ClipboardItem({
+            'image/png': blob,
+            'text/plain': new Blob([textToCopy], { type: 'text/plain' })
         });
+
+        // Copy to clipboard
+        navigator.clipboard.write([clipboardItem])
+            .then(() => {
+                // Show success feedback
+                const originalText = buttonElement.textContent;
+                buttonElement.textContent = '✓ Copied!';
+                buttonElement.style.backgroundColor = '#27ae60';
+                
+                setTimeout(() => {
+                    buttonElement.textContent = originalText;
+                    buttonElement.style.backgroundColor = '';
+                }, 2000);
+            })
+            .catch(err => {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy to clipboard. Try using Chrome or Edge browser.');
+            });
+    }, 'image/png');
 }
 
