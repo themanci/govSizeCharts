@@ -234,6 +234,15 @@ footer p:last-child {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    header {
+        padding: 30px 15px;
+        margin-bottom: 25px;
+    }
+
     header h1 {
         font-size: 2em;
     }
@@ -242,46 +251,161 @@ footer p:last-child {
         font-size: 1.1em;
     }
 
+    header .description {
+        font-size: 0.95em;
+    }
+
     .chart-nav {
         flex-direction: column;
         align-items: stretch;
+        gap: 8px;
     }
 
     .nav-btn {
         width: 100%;
         text-align: center;
+        padding: 12px 16px;
+        font-size: 0.9em;
     }
 
     .chart-wrapper {
-        height: 300px;
-        padding: 15px;
+        padding: 10px;
+        margin-bottom: 25px;
+    }
+
+    .chart-container {
+        height: 350px;
+    }
+
+    #octopus .chart-container,
+    #chart1 .chart-container,
+    #chart2 .chart-container,
+    #chart3 .chart-container,
+    #chart4 .chart-container,
+    #chart5 .chart-container,
+    #chart6 .chart-container,
+    #chart7 .chart-container,
+    #chart8 .chart-container,
+    #chart9 .chart-container,
+    #chart10 .chart-container,
+    #chart11 .chart-container,
+    #chart12 .chart-container,
+    #chart13 .chart-container,
+    #chart14 .chart-container,
+    #chart15 .chart-container {
+        height: 350px;
     }
 
     .chart-section {
-        padding: 20px;
+        padding: 20px 15px;
+        margin-bottom: 25px;
+    }
+
+    .chart-title {
+        font-size: 1.3em;
+    }
+
+    .chart-description {
+        font-size: 0.9em;
+    }
+
+    .chart-analysis {
+        padding-top: 30px;
     }
 
     .chart-analysis h3 {
         font-size: 1.2em;
     }
+
+    .chart-analysis p {
+        font-size: 0.95em;
+    }
+
+    .copy-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 1em;
+        margin-top: 20px;
+    }
 }
 
 @media (max-width: 480px) {
+    .container {
+        padding: 5px;
+    }
+
+    header {
+        padding: 20px 10px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+    }
+
     header h1 {
-        font-size: 1.5em;
+        font-size: 1.6em;
     }
 
     header .subtitle {
         font-size: 1em;
     }
 
+    header .description {
+        font-size: 0.9em;
+    }
+
+    .chart-nav {
+        gap: 6px;
+    }
+
+    .nav-btn {
+        padding: 10px 12px;
+        font-size: 0.85em;
+    }
+
     .chart-wrapper {
-        height: 250px;
+        padding: 8px;
+        margin-bottom: 20px;
+    }
+
+    .chart-container {
+        height: 280px;
+    }
+
+    #octopus .chart-container,
+    #chart1 .chart-container,
+    #chart2 .chart-container,
+    #chart3 .chart-container,
+    #chart4 .chart-container,
+    #chart5 .chart-container,
+    #chart6 .chart-container,
+    #chart7 .chart-container,
+    #chart8 .chart-container,
+    #chart9 .chart-container,
+    #chart10 .chart-container,
+    #chart11 .chart-container,
+    #chart12 .chart-container,
+    #chart13 .chart-container,
+    #chart14 .chart-container,
+    #chart15 .chart-container {
+        height: 280px;
     }
 
     .chart-section {
-        padding: 15px;
+        padding: 15px 10px;
         margin-bottom: 20px;
+    }
+
+    .chart-title {
+        font-size: 1.15em;
+        margin-bottom: 6px;
+    }
+
+    .chart-description {
+        font-size: 0.85em;
+        margin-bottom: 15px;
+    }
+
+    .chart-analysis {
+        padding-top: 25px;
     }
 
     .chart-analysis h3 {
@@ -289,7 +413,20 @@ footer p:last-child {
     }
 
     .chart-analysis p {
-        font-size: 0.95em;
+        font-size: 0.9em;
+        line-height: 1.5;
+    }
+
+    .copy-btn {
+        width: 100%;
+        padding: 14px;
+        font-size: 1em;
+        margin-top: 15px;
+    }
+
+    footer {
+        padding: 15px 10px;
+        font-size: 0.85em;
     }
 }
 
