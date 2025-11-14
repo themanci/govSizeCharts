@@ -309,8 +309,13 @@ footer p:last-child {
         font-size: 0.9em;
     }
 
+    .chart-wrapper {
+        margin-bottom: 50px;
+    }
+
     .chart-analysis {
-        padding-top: 30px;
+        padding-top: 40px;
+        margin-top: 10px;
     }
 
     .chart-analysis h3 {
@@ -363,7 +368,7 @@ footer p:last-child {
 
     .chart-wrapper {
         padding: 8px;
-        margin-bottom: 20px;
+        margin-bottom: 60px;
     }
 
     .chart-container {
@@ -405,7 +410,8 @@ footer p:last-child {
     }
 
     .chart-analysis {
-        padding-top: 25px;
+        padding-top: 50px;
+        margin-top: 15px;
     }
 
     .chart-analysis h3 {
