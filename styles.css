@@ -313,6 +313,16 @@ footer p:last-child {
         margin-bottom: 80px;
     }
 
+    /* Extra spacing for specific charts that need it */
+    #octopus .chart-wrapper,
+    #chart2 .chart-wrapper,
+    #chart5 .chart-wrapper,
+    #chart6 .chart-wrapper,
+    #chart7 .chart-wrapper,
+    #chart11 .chart-wrapper {
+        margin-bottom: 120px;
+    }
+
     .chart-analysis {
         padding-top: 60px;
         margin-top: 20px;
@@ -369,6 +379,16 @@ footer p:last-child {
     .chart-wrapper {
         padding: 8px;
         margin-bottom: 100px;
+    }
+
+    /* Extra spacing for specific charts that need it */
+    #octopus .chart-wrapper,
+    #chart2 .chart-wrapper,
+    #chart5 .chart-wrapper,
+    #chart6 .chart-wrapper,
+    #chart7 .chart-wrapper,
+    #chart11 .chart-wrapper {
+        margin-bottom: 150px;
     }
 
     .chart-container {
