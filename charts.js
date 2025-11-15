@@ -616,7 +616,7 @@ function scrollToChart(chartId) {
     event.target.classList.add('active');
 }
 
-// Copy to Clipboard function - copies both chart image and text
+// Copy to Clipboard function - copies chart with text burned into the image
 function copyToClipboard(sectionId, buttonElement) {
     const section = document.getElementById(sectionId);
     if (!section) {
@@ -625,8 +625,8 @@ function copyToClipboard(sectionId, buttonElement) {
     }
 
     // Find the canvas element (chart)
-    const canvas = section.querySelector('canvas');
-    if (!canvas) {
+    const chartCanvas = section.querySelector('canvas');
+    if (!chartCanvas) {
         alert('Chart not found');
         return;
     }
@@ -646,43 +646,160 @@ function copyToClipboard(sectionId, buttonElement) {
         analysis += p.textContent.trim() + '\n\n';
     });
 
-    // Construct the text to copy
-    const textToCopy = `${title}
-
-${description}
-
-${analysis.trim()}`;
-
-    // Convert canvas to blob
-    canvas.toBlob(blob => {
-        if (!blob) {
-            alert('Failed to convert chart to image');
-            return;
+    // Word wrap function
+    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+        const words = text.split(' ');
+        let line = '';
+        let currentY = y;
+        
+        for (let n = 0; n < words.length; n++) {
+            const testLine = line + words[n] + ' ';
+            const metrics = ctx.measureText(testLine);
+            const testWidth = metrics.width;
+            
+            if (testWidth > maxWidth && n > 0) {
+                ctx.fillText(line, x, currentY);
+                line = words[n] + ' ';
+                currentY += lineHeight;
+            } else {
+                line = testLine;
+            }
         }
-
-        // Create ClipboardItem with both image and text
-        const clipboardItem = new ClipboardItem({
-            'image/png': blob,
-            'text/plain': new Blob([textToCopy], { type: 'text/plain' })
-        });
-
-        // Copy to clipboard
-        navigator.clipboard.write([clipboardItem])
-            .then(() => {
-                // Show success feedback
-                const originalText = buttonElement.textContent;
-                buttonElement.textContent = '✓ Copied!';
-                buttonElement.style.backgroundColor = '#27ae60';
+        ctx.fillText(line, x, currentY);
+        return currentY + lineHeight;
+    }
+    
+    // Measure how much space we need for the analysis text
+    function measureAnalysisHeight(ctx, analysisText, maxWidth, lineHeight, padding) {
+        const lines = analysisText.split('\n\n');
+        let totalHeight = 0;
+        ctx.font = '16px Arial, sans-serif';
+        
+        for (let line of lines) {
+            if (line.trim()) {
+                const words = line.trim().split(' ');
+                let testLine = '';
+                let lineCount = 1;
                 
-                setTimeout(() => {
-                    buttonElement.textContent = originalText;
-                    buttonElement.style.backgroundColor = '';
-                }, 2000);
-            })
-            .catch(err => {
-                console.error('Failed to copy:', err);
-                alert('Failed to copy to clipboard. Try using Chrome or Edge browser.');
-            });
-    }, 'image/png');
+                for (let word of words) {
+                    const test = testLine + word + ' ';
+                    if (ctx.measureText(test).width > maxWidth && testLine !== '') {
+                        lineCount++;
+                        testLine = word + ' ';
+                    } else {
+                        testLine = test;
+                    }
+                }
+                totalHeight += lineCount * lineHeight + 8; // Reduced spacing between paragraphs
+            }
+        }
+        return totalHeight;
+    }
+    
+    // Create a new canvas that combines text + chart + text
+    const combinedCanvas = document.createElement('canvas');
+    const ctx = combinedCanvas.getContext('2d');
+    
+    const padding = 40;
+    const maxTextWidth = chartCanvas.width;
+    
+    // Measure analysis text height (tighter calculation)
+    const analysisHeight = measureAnalysisHeight(ctx, analysis, maxTextWidth, 22, padding);
+    
+    // Calculate total canvas height (tight fit)
+    const titleHeight = 35;
+    const descriptionEstimate = 80; // Room for 2-3 lines
+    const spacing = 25;
+    const bottomPadding = 15; // Minimal padding at bottom
+    
+    combinedCanvas.width = chartCanvas.width + (padding * 2);
+    combinedCanvas.height = padding + titleHeight + descriptionEstimate + spacing + chartCanvas.height + spacing + analysisHeight + bottomPadding;
+    
+    // Fill background
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, combinedCanvas.width, combinedCanvas.height);
+    
+    // Draw title at top
+    ctx.fillStyle = '#2c3e50';
+    ctx.font = 'bold 22px Arial, sans-serif';
+    ctx.textAlign = 'left';
+    let yPosition = padding + 25;
+    ctx.fillText(title, padding, yPosition);
+    yPosition += 28;
+    
+    // Draw description below title (italic, smaller)
+    ctx.font = 'italic 15px Arial, sans-serif';
+    ctx.fillStyle = '#666';
+    yPosition = wrapText(ctx, description, padding, yPosition, maxTextWidth, 22);
+    yPosition += spacing;
+    
+    // Draw the chart
+    ctx.drawImage(chartCanvas, padding, yPosition);
+    yPosition += chartCanvas.height + spacing;
+    
+    // Draw analysis text below chart
+    ctx.fillStyle = '#333';
+    ctx.font = '16px Arial, sans-serif';
+    const analysisLines = analysis.split('\n\n');
+    
+    for (let i = 0; i < analysisLines.length; i++) {
+        if (analysisLines[i].trim()) {
+            yPosition = wrapText(ctx, analysisLines[i].trim(), padding, yPosition, maxTextWidth, 22);
+            yPosition += 6; // Reduced from 10 to 6
+        }
+    }
+    
+    // Check if ClipboardItem is supported
+    if (typeof ClipboardItem !== 'undefined' && navigator.clipboard && navigator.clipboard.write) {
+        // Modern browsers - copy image to clipboard
+        combinedCanvas.toBlob(blob => {
+            if (!blob) {
+                alert('Failed to create image');
+                return;
+            }
+
+            const clipboardItem = new ClipboardItem({ 'image/png': blob });
+
+            navigator.clipboard.write([clipboardItem])
+                .then(() => {
+                    // Show success feedback
+                    const originalText = buttonElement.textContent;
+                    buttonElement.textContent = '✓ Copied!';
+                    buttonElement.style.backgroundColor = '#27ae60';
+                    
+                    setTimeout(() => {
+                        buttonElement.textContent = originalText;
+                        buttonElement.style.backgroundColor = '';
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Failed to copy:', err);
+                    // Fallback to download
+                    downloadImage(combinedCanvas, sectionId, buttonElement);
+                });
+        }, 'image/png');
+    } else {
+        // Fallback for browsers that don't support ClipboardItem - download instead
+        downloadImage(combinedCanvas, sectionId, buttonElement);
+    }
+}
+
+// Fallback function to download the image if clipboard doesn't work
+function downloadImage(canvas, sectionId, buttonElement) {
+    const dataURL = canvas.toDataURL('image/png');
+    const link = document.createElement('a');
+    link.download = `${sectionId}-chart.png`;
+    link.href = dataURL;
+    link.click();
+    
+    // Show feedback
+    const originalText = buttonElement.textContent;
+    buttonElement.textContent = '✓ Downloaded!';
+    buttonElement.style.backgroundColor = '#3498db';
+    
+    setTimeout(() => {
+        buttonElement.textContent = originalText;
+        buttonElement.style.backgroundColor = '';
+    }, 2000);
 }
 
