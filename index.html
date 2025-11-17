@@ -1,319 +1,233 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Government Size Charts - The Octopus Index</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <title>Political Data Hub - Cut Through Political Noise with Data</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.15) 0%, rgba(155, 89, 182, 0.15) 100%);
+            border-radius: 12px;
+            margin-bottom: 60px;
+            border-left: 5px solid #3498db;
+        }
+        .hero h1 {
+            font-size: 3.5em;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+        }
+        .hero .tagline {
+            font-size: 1.5em;
+            color: #ecf0f1;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+        .hero .description {
+            font-size: 1.1em;
+            color: #bdc3c7;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+        }
+        .cta-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(52, 152, 219, 0.6);
+        }
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .topic-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #3498db;
+        }
+        .topic-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        .topic-card.featured {
+            border-left-color: #e74c3c;
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+        }
+        .topic-card.coming-soon {
+            border-left-color: #95a5a6;
+            opacity: 0.7;
+        }
+        .topic-card h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+        .topic-card p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .topic-card .stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .topic-card .stat {
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+        .topic-card .stat strong {
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        .topic-link {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .topic-link:hover {
+            background-color: #2980b9;
+        }
+        .topic-card.coming-soon .topic-link {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        .mission-section {
+            background: #fff;
+            padding: 50px 30px;
+            border-radius: 12px;
+            margin: 60px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        .mission-section h2 {
+            color: #2c3e50;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .mission-section p {
+            color: #555;
+            font-size: 1.1em;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+        @media (max-width: 768px) {
+            .hero { padding: 50px 15px; margin-bottom: 40px; }
+            .hero h1 { font-size: 2.2em; }
+            .hero .tagline { font-size: 1.2em; }
+            .hero .description { font-size: 1em; }
+            .cta-button { padding: 12px 30px; font-size: 1em; }
+            .topics-grid { grid-template-columns: 1fr; gap: 20px; }
+            .topic-card { padding: 25px 20px; }
+            .topic-card h2 { font-size: 1.4em; }
+            .mission-section { padding: 35px 20px; margin: 40px 0; }
+            .mission-section h2 { font-size: 1.8em; }
+            .mission-section p { font-size: 1em; }
+        }
+        @media (max-width: 480px) {
+            .hero { padding: 40px 10px; }
+            .hero h1 { font-size: 1.8em; }
+            .hero .tagline { font-size: 1.1em; }
+            .cta-button { width: 100%; padding: 14px 20px; }
+            .topic-card { padding: 20px 15px; }
+            .topic-card .stats { flex-direction: column; gap: 10px; }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>🐙 The Octopus Index</h1>
-            <p class="subtitle">Government Power Concentration (1975 = 1.0)</p>
-            <p class="description">A comprehensive look at 50 years of federal government expansion across spending, regulations, transfers, and debt.</p>
-        </header>
-
-        <nav class="chart-nav">
-            <button class="nav-btn active" onclick="scrollToChart('octopus')">Octopus Index</button>
-            <button class="nav-btn" onclick="scrollToChart('chart1')">Outlays/GDP</button>
-            <button class="nav-btn" onclick="scrollToChart('chart2')">Transfers</button>
-            <button class="nav-btn" onclick="scrollToChart('chart3')">Fed Register</button>
-            <button class="nav-btn" onclick="scrollToChart('chart4')">CFR Pages</button>
-            <button class="nav-btn" onclick="scrollToChart('chart5')">Restrictions</button>
-            <button class="nav-btn" onclick="scrollToChart('chart6')">Fed Employment</button>
-            <button class="nav-btn" onclick="scrollToChart('chart7')">Wage Premium</button>
-            <button class="nav-btn" onclick="scrollToChart('chart8')">Programs</button>
-            <button class="nav-btn" onclick="scrollToChart('chart9')">Grants</button>
-            <button class="nav-btn" onclick="scrollToChart('chart10')">Subsidies</button>
-            <button class="nav-btn" onclick="scrollToChart('chart11')">Criminal Laws</button>
-            <button class="nav-btn" onclick="scrollToChart('chart12')">Lobbying</button>
-            <button class="nav-btn" onclick="scrollToChart('chart13')">Debt/GDP</button>
-            <button class="nav-btn" onclick="scrollToChart('chart14')">Major Rules</button>
-            <button class="nav-btn" onclick="scrollToChart('chart15')">Dependency</button>
-        </nav>
-
-        <main class="charts-grid">
-            <!-- Octopus Index -->
-            <section id="octopus" class="chart-section">
-                <div class="chart-wrapper">
-                    <div class="chart-container">
-                        <span class="chart-title">Octopus Index: Government Power Concentration (1975 = 1.0)</span>
-                        <span class="chart-description">A weighted average of all 15 metrics normalized to their 1975 baseline (1.0). Shows the compounding growth of federal power across all dimensions.</span>
-                        <canvas id="octopusChart" width="400" height="300"></canvas>
+        <section class="hero">
+            <h1>Political Data Hub</h1>
+            <p class="tagline">Cut Through Political Noise with Data</p>
+            <p class="description">Both parties campaign on fear while expanding federal power. We dig into the numbersnot the talking pointsto show what's really happening in American politics.</p>
+            <a href="#topics" class="cta-button">Explore the Data</a>
+        </section>
+        <section id="topics">
+            <h2 style="color: #fff; text-align: center; font-size: 2.5em; margin-bottom: 40px;">Data-Driven Topics</h2>
+            <div class="topics-grid">
+                <div class="topic-card featured">
+                    <h2> Federal Power Index</h2>
+                    <p>Track government growth across 15 metrics from 1975-2025: spending, regulations, debt, transfers, lobbying, and more.</p>
+                    <div class="stats">
+                        <div class="stat"><strong>3.07x</strong> growth since 1975</div>
+                        <div class="stat"><strong>15</strong> metrics tracked</div>
+                        <div class="stat"><strong>50</strong> years of data</div>
                     </div>
+                    <a href="federal-power-index.html" class="topic-link">View Full Analysis </a>
                 </div>
-                <div class="chart-analysis">
-                    <p>A weighted average of all 15 metrics normalized to their 1975 baseline (1.0). The index rises to 3.07 by 2025, indicating that government influence over economic, regulatory, and social life is over three times greater than fifty years ago.</p>
-                    <p><strong>Key Insight:</strong> This single metric reveals a relentless, ratchet-like expansion of federal power across spending, regulations, transfers, and debt. Reversing this trend requires structural reform.</p>
-                    <p><strong>Sources:</strong> Weighted average of all 15 metrics below. See individual sources for each component.</p>
-                    <button class="copy-btn" onclick="copyToClipboard('octopus', this)">📋 Copy to Clipboard</button>
+                <div class="topic-card coming-soon">
+                    <h2> Money in Politics</h2>
+                    <p>Track lobbying expenditures, campaign finance, PAC contributions, and the flow of money through Washington.</p>
+                    <div class="stats"><div class="stat"><strong>Coming Soon</strong></div></div>
+                    <a href="#" class="topic-link">Coming Soon</a>
                 </div>
-            </section>
-
-            <!-- Chart 1 -->
-            <section id="chart1" class="chart-section">
-                <div class="chart-wrapper">
-                    <div class="chart-container">
-                        <span class="chart-title">Federal Outlays / GDP (%)</span>
-                        <span class="chart-description">Measures total federal spending as a percentage of the economy. Shows how much of annual economic output the federal government controls through taxation and spending.</span>
-                        <canvas id="chart1Canvas"></canvas>
-                    </div>
+                <div class="topic-card coming-soon">
+                    <h2> Healthcare Claims</h2>
+                    <p>Fact-check common healthcare talking points with data on costs, coverage, outcomes, and international comparisons.</p>
+                    <div class="stats"><div class="stat"><strong>Coming Soon</strong></div></div>
+                    <a href="#" class="topic-link">Coming Soon</a>
                 </div>
-                <div class="chart-analysis">
-                    <p>Federal spending as a share of GDP hovered around 21–22% from 1975 to 2015, reflecting a stable post-WWII norm. The 2020 spike to 33% (COVID) was temporary, but the 2025 level of 23.9% is still 10% above the 50-year average and represents $6.9 trillion in annual extraction from the private economy. Every percentage point equals ~$280 billion in taxes or debt — money not available for voluntary exchange.</p>
-                    <p>The rise since 2015 is driven by entitlement auto-pilot (Social Security, Medicare) and interest on debt, not new discretionary programs. This metric is worsening because Congress refuses structural reform — and the 2025 Trump cuts (via DOGE) have only trimmed $170B, not enough to reverse the trend.</p>
-                    <p><strong>Sources:</strong> Office of Management and Budget (OMB) Historical Tables; Bureau of Economic Analysis (BEA); Federal Reserve Economic Data (FRED) Series FYONGDA188S / GDPA. Data: whitehouse.gov/omb/budget/historical-tables; fred.stlouisfed.org/series/FYONGDA188S</p>
-                    <button class="copy-btn" onclick="copyToClipboard('chart1', this)">📋 Copy to Clipboard</button>
+                <div class="topic-card coming-soon">
+                    <h2> Economic Policy</h2>
+                    <p>Examine tax policy, GDP growth, unemployment, inflation, and wage trends with historical context.</p>
+                    <div class="stats"><div class="stat"><strong>Coming Soon</strong></div></div>
+                    <a href="#" class="topic-link">Coming Soon</a>
                 </div>
-            </section>
-
-            <!-- Chart 2 -->
-            <section id="chart2" class="chart-section">
-                <div class="chart-wrapper">
-                    <div class="chart-container">
-                        <span class="chart-title">Direct Transfers to Individuals / GDP</span>
-                        <span class="chart-description">Tracks cash and in-kind benefits (Social Security, Medicare, Medicaid, etc.) as a share of GDP. Measures the growing portion of the economy redistributed as government payments to individuals.</span>
-                        <canvas id="chart2Canvas"></canvas>
-                    </div>
+                <div class="topic-card coming-soon">
+                    <h2> Immigration Facts</h2>
+                    <p>Cut through rhetoric with data on border crossings, deportations, asylum cases, and economic impact.</p>
+                    <div class="stats"><div class="stat"><strong>Coming Soon</strong></div></div>
+                    <a href="#" class="topic-link">Coming Soon</a>
                 </div>
-                <div class="chart-analysis">
-                    <p>In 1975, 6% of GDP went directly to individuals via cash or in-kind benefits. By 2025, this is 15% — $4.3 trillion annually. Medicare and Medicaid grew fastest due to aging population + medical inflation, while "Others" (SNAP, EITC, UI, housing) exploded post-2008 and 2020. This is not investment — it's consumption funded by debt or taxes.</p>
-                    <p>This metric is worsening dramatically because entitlements are on auto-pilot: no means-testing, no sunset clauses. Even Trump's 2025 cuts barely touched these programs. Impact: 1 in 3 households now receives direct federal cash, eroding work incentives and political resistance to tax hikes.</p>
-                    <p><strong>Sources:</strong> OMB Historical Tables; Congressional Budget Office (CBO); FRED Series A822RC1A027NBEA. Data: whitehouse.gov/omb/budget/historical-tables; fred.stlouisfed.org/series/A822RC1A027NBEA</p>
-                    <button class="copy-btn" onclick="copyToClipboard('chart2', this)">📋 Copy to Clipboard</button>
+                <div class="topic-card coming-soon">
+                    <h2> Crime & Justice</h2>
+                    <p>Analyze crime rates, incarceration trends, police funding, and criminal justice outcomes.</p>
+                    <div class="stats"><div class="stat"><strong>Coming Soon</strong></div></div>
+                    <a href="#" class="topic-link">Coming Soon</a>
                 </div>
-            </section>
-
-            <!-- Chart 3 -->
-            <section id="chart3" class="chart-section">
-                <div class="chart-wrapper">
-                    <div class="chart-container">
-                        <span class="chart-title">Pages in the Federal Register</span>
-                        <span class="chart-description">Counts pages of proposed and final federal regulations published annually. Each page represents a regulatory edict with force of law affecting businesses and citizens.</span>
-                        <canvas id="chart3Canvas"></canvas>
-                    </div>
-                </div>
-                <div class="chart-analysis">
-                    <p>The Federal Register is the daily dump of proposed and final rules. In 1975, it was 20,000 pages. By 2025, it's 90,000+ — a 4.5x increase. 2020 hit 185,000 under COVID emergency rules. This is not law — it's bureaucratic edict with force of law.</p>
-                    <p>The post-2008 surge reflects Obama-era financial, environmental, and health rules, with Trump I reducing it temporarily, but Biden + 2025 partial rebound shows the ratchet effect. Impact: Each page costs businesses $100–$1,000 in compliance — a hidden tax.</p>
-                    <p><strong>Sources:</strong> Federal Register Statistics; George Washington University Regulatory Studies Center. Data: federalregister.gov/reader-aids/federal-register-statistics; regulatorystudies.columbian.gwu.edu/regstats</p>
-                    <button class="copy-btn" onclick="copyToClipboard('chart3', this)">📋 Copy to Clipboard</button>
-                </div>
-            </section>
-
-            <!-- Chart 4 -->
-            <section id="chart4" class="chart-section">
-                <div class="chart-wrapper">
-                    <div class="chart-container">
-                        <span class="chart-title">Code of Federal Regulations (CFR) Pages</span>
-                        <span class="chart-description">Measures the total cumulative pages of all standing federal regulations in force. Shows the permanent rulebook that businesses and citizens must navigate to operate legally.</span>
-                        <canvas id="chart4Canvas"></canvas>
-                    </div>
-                </div>
-                <div class="chart-analysis">
-                    <p>The CFR is the cumulative rulebook — what's still in force. It grew from 70,000 pages in 1975 to 190,000 in 2025 — 2.7x. Unlike the Register, rules rarely expire. Trump I removed ~20,000 pages, but net growth resumed.</p>
-                    <p>This is worsening because no administration has repealed more than it added long-term. Impact: A small business must navigate thousands of pages just to operate legally — a barrier to entry that protects incumbents.</p>
-                    <p><strong>Sources:</strong> Government Publishing Office (GPO) CFR data; QuantGov. Data: govinfo.gov/collections/cfr; quantgov.org</p>
-                    <button class="copy-btn" onclick="copyToClipboard('chart4', this)">📋 Copy to Clipboard</button>
-                </div>
-            </section>
-
-            <!-- Chart 5 -->
-            <section id="chart5" class="chart-section">
-                <div class="chart-wrapper">
-                    <div class="chart-container">
-                        <span class="chart-title">Restrictive Terms in CFR (RegData)</span>
-                        <span class="chart-description">Counts coercive language ("shall," "must," "prohibited," "required") in regulations. A more precise measure of regulatory burden than page count, measuring the density of actual commands.</span>
-                        <canvas id="chart5Canvas"></canvas>
-                    </div>
-                </div>
-                <div class="chart-analysis">
-                    <p>RegData counts "shall," "must," "prohibited," "required" — actual commands. From 300,000 in 1975 to 1.1 million in 2025 — 3.7x growth. This is more accurate than pages because it measures coercion density.</p>
-                    <p>The steepest rise was 1990–2015 (Clinton, Bush, Obama). Trump I slowed it, but 2025 is still +100k under partial rollback. Impact: Each restriction is a potential fine or jail term — government's grip on behavior.</p>
-                    <p><strong>Sources:</strong> QuantGov Federal Regulatory Growth Database; Mercatus Center. Data: quantgov.org/federal-regulatory-growth</p>
-                    <button class="copy-btn" onclick="copyToClipboard('chart5', this)">📋 Copy to Clipboard</button>
-                </div>
-            </section>
-
-            <!-- Chart 6 -->
-            <section id="chart6" class="chart-section">
-                <div class="chart-wrapper">
-                    <div class="chart-container">
-                        <span class="chart-title">Federal Civilian Employment per 100k Population</span>
-                        <span class="chart-description">Adjusts federal headcount for population growth to show bureaucratic density. The only improving metric, reflecting automation, outsourcing, and recent workforce cuts.</span>
-                        <canvas id="chart6Canvas"></canvas>
-                    </div>
-                </div>
-                <div class="chart-analysis">
-                    <p>Raw headcount grew from 1.8M to 2.1M, but per capita, it's down 29% since 1975. This is the only improving metric — thanks to automation, outsourcing, and Trump II's 300k cuts. By 2025, density is lowest since 1960.</p>
-                    <p>Why better? Technology + political will (DOGE). Impact: Fewer enforcers = less daily harassment. But political appointees rose, so control may not have fallen.</p>
-                    <p><strong>Sources:</strong> Office of Personnel Management (OPM) FedScope; U.S. Census Bureau. Data: fedscope.opm.gov; census.gov/data/tables/time-series/demo/popest</p>
-                    <button class="copy-btn" onclick="copyToClipboard('chart6', this)">📋 Copy to Clipboard</button>
-                </div>
-            </section>
-
-            <!-- Chart 7 -->
-            <section id="chart7" class="chart-section">
-                <div class="chart-wrapper">
-                    <div class="chart-container">
-                        <span class="chart-title">Federal vs Private Wage Premium</span>
-                        <span class="chart-description">Compares average federal employee compensation (salary, benefits, pensions) to private sector equivalents. Shows the growing insulation of government workers from market discipline.</span>
-                        <canvas id="chart7Canvas"></canvas>
-                    </div>
-                </div>
-                <div class="chart-analysis">
-                    <p>Federal workers earn 70% more than private counterparts (2025, CBO) — up from 30% in 1975. Includes pensions, job security, benefits. This creates a permanent bureaucratic class insulated from market discipline.</p>
-                    <p>Worsening due to union power + Congress refusal to reform. Impact: Attracts risk-averse talent, not innovators. Taxpayers fund a privileged caste.</p>
-                    <p><strong>Sources:</strong> Congressional Budget Office (CBO) Federal Pay Study; Bureau of Labor Statistics (BLS) National Compensation Survey. Data: cbo.gov/publication/59970; bls.gov/ncs</p>
-                    <button class="copy-btn" onclick="copyToClipboard('chart7', this)">📋 Copy to Clipboard</button>
-                </div>
-            </section>
-
-            <!-- Chart 8 -->
-            <section id="chart8" class="chart-section">
-                <div class="chart-wrapper">
-                    <div class="chart-container">
-                        <span class="chart-title">Federal Assistance Programs</span>
-                        <span class="chart-description">Counts the total number of federal grant, loan, and insurance assistance programs. Shows the expanding reach of federal touchpoints in education, health, housing, and energy.</span>
-                        <canvas id="chart8Canvas"></canvas>
-                    </div>
-                </div>
-                <div class="chart-analysis">
-                    <p>From ~400 programs in 1975 to 2,300+ in 2025 — 5.8x growth. These are grants, loans, insurance touching education, health, housing, energy. Many are duplicative (e.g., 80+ economic development programs).</p>
-                    <p>Worsening because no sunset clauses — programs live forever. Impact: D.C. controls local priorities via strings-attached funding.</p>
-                    <p><strong>Sources:</strong> USAspending.gov Assistance Listings; Government Accountability Office (GAO) reports. Data: usaspending.gov/assistance-listings</p>
-                    <button class="copy-btn" onclick="copyToClipboard('chart8', this)">📋 Copy to Clipboard</button>
-                </div>
-            </section>
-
-            <!-- Chart 9 -->
-            <section id="chart9" class="chart-section">
-                <div class="chart-wrapper">
-                    <div class="chart-container">
-                        <span class="chart-title">Federal Grants to State/Local / GDP</span>
-                        <span class="chart-description">Measures federal money sent to states and municipalities as a percentage of GDP. Shows the mechanism of federal control over local policy through conditional funding.</span>
-                        <canvas id="chart9Canvas"></canvas>
-                    </div>
-                </div>
-                <div class="chart-analysis">
-                    <p>D.C. sends 4% of GDP ($1.15T) to states — up from 1.5% in 1975. This buys compliance: states must follow federal rules to get money. Medicaid is the largest driver.</p>
-                    <p>Worsening because states are addicted. Impact: 10th Amendment erosion — local policy dictated from D.C.</p>
-                    <p><strong>Sources:</strong> Office of Management and Budget (OMB) Historical Tables; U.S. Census Bureau. Data: whitehouse.gov/omb/budget/historical-tables; census.gov/govs/local</p>
-                    <button class="copy-btn" onclick="copyToClipboard('chart9', this)">📋 Copy to Clipboard</button>
-                </div>
-            </section>
-
-            <!-- Chart 10 -->
-            <section id="chart10" class="chart-section">
-                <div class="chart-wrapper">
-                    <div class="chart-container">
-                        <span class="chart-title">Federal Subsidies to Private Sector (2025)</span>
-                        <span class="chart-description">Breaks down $345B in annual corporate welfare by sector (energy, agriculture, housing, credit). Shows how government distorts markets by picking winners and losers.</span>
-                        <canvas id="chart10Canvas"></canvas>
-                    </div>
-                </div>
-                <div class="chart-analysis">
-                    <p>1.2% of GDP ($345B) goes to corporate welfare — 3x the 1975 level. Energy (green subsidies) and ag dominate. This is not free market — it's picking winners.</p>
-                    <p>Worsening under both parties. Impact: Distorts markets, funds lobbying, punishes unsubsidized competitors.</p>
-                    <p><strong>Sources:</strong> Office of Management and Budget (OMB) Historical Tables. Data: whitehouse.gov/omb/budget/historical-tables</p>
-                    <button class="copy-btn" onclick="copyToClipboard('chart10', this)">📋 Copy to Clipboard</button>
-                </div>
-            </section>
-
-            <!-- Chart 11 -->
-            <section id="chart11" class="chart-section">
-                <div class="chart-wrapper">
-                    <div class="chart-container">
-                        <span class="chart-title">Federal Criminal Statutes + Regulatory Crimes</span>
-                        <span class="chart-description">Counts federal crimes defined by statute and regulation. Shows the explosive growth of federal criminalization, creating a system where most citizens unknowingly violate federal law.</span>
-                        <canvas id="chart11Canvas"></canvas>
-                    </div>
-                </div>
-                <div class="chart-analysis">
-                    <p>5,000+ federal statutes + 300,000+ regulatory crimes = you're guilty of something. Most Americans commit 3 felonies a day (Harvey Silverglate).</p>
-                    <p>Worsening due to agency rule-making. Impact: Selective prosecution = political weapon.</p>
-                    <p><strong>Sources:</strong> Heritage Foundation Crime and Justice Center; Department of Justice (DOJ). Data: heritage.org/crime-and-justice/report/count-the-code</p>
-                    <button class="copy-btn" onclick="copyToClipboard('chart11', this)">📋 Copy to Clipboard</button>
-                </div>
-            </section>
-
-            <!-- Chart 12 -->
-            <section id="chart12" class="chart-section">
-                <div class="chart-wrapper">
-                    <div class="chart-container">
-                        <span class="chart-title">Lobbying Expenditures (Real Dollars)</span>
-                        <span class="chart-description">Tracks annual spending on federal lobbying in inflation-adjusted dollars. Shows the 10.5x growth in rent-seeking expenditure as concentrated power becomes worth buying.</span>
-                        <canvas id="chart12Canvas"></canvas>
-                    </div>
-                </div>
-                <div class="chart-analysis">
-                    <p>Lobbying grew from $400M to $4.2B (real) — 10.5x. Proof that concentrated power is worth buying. Pharma, finance, and tech lead. Policy is for sale.</p>
-                    <p><strong>Sources:</strong> OpenSecrets Center for Responsive Politics. Data: opensecrets.org/federal-lobbying</p>
-                    <button class="copy-btn" onclick="copyToClipboard('chart12', this)">📋 Copy to Clipboard</button>
-                </div>
-            </section>
-
-            <!-- Chart 13 -->
-            <section id="chart13" class="chart-section">
-                <div class="chart-wrapper">
-                    <div class="chart-container">
-                        <span class="chart-title">Public Debt / GDP</span>
-                        <span class="chart-description">Measures accumulated federal debt as a percentage of annual economic output. Represents the future tax liability passed to taxpayers and crowding-out of private investment.</span>
-                        <canvas id="chart13Canvas"></canvas>
-                    </div>
-                </div>
-                <div class="chart-analysis">
-                    <p>Debt/GDP from 32% to 99% — 3.1x. Interest now > defense spending. Future taxpayers are indentured.</p>
-                    <p>Worsening due to entitlements + no cuts. Impact: Crowds out private investment.</p>
-                    <p><strong>Sources:</strong> Office of Management and Budget (OMB) Historical Tables; Federal Reserve Economic Data (FRED) Series FYGFGDQ188S. Data: whitehouse.gov/omb/budget/historical-tables; fred.stlouisfed.org/series/FYGFGDQ188S</p>
-                    <button class="copy-btn" onclick="copyToClipboard('chart13', this)">📋 Copy to Clipboard</button>
-                </div>
-            </section>
-
-            <!-- Chart 14 -->
-            <section id="chart14" class="chart-section">
-                <div class="chart-wrapper">
-                    <div class="chart-container">
-                        <span class="chart-title">Major Rules (Costing >$100M)</span>
-                        <span class="chart-description">Counts regulations with quantified impacts exceeding $100 million annually. Shows the proliferation of economically significant rules that create barriers to entry for startups.</span>
-                        <canvas id="chart14Canvas"></canvas>
-                    </div>
-                </div>
-                <div class="chart-analysis">
-                    <p>2,000+ major rules in 2025 — 40x 1975. Each costs >$100M. EPA, HHS, DOL dominate.</p>
-                    <p>Worsening under all admins. Impact: Startups can't comply — barriers to entry.</p>
-                    <p><strong>Sources:</strong> U.S. Small Business Administration (SBA) Office of Advocacy; Office of Information and Regulatory Affairs (OIRA) Annual Reports. Data: advocacy.sba.gov/annual-rfa-reports; reginfo.gov/public/do/eAgendaMain</p>
-                    <button class="copy-btn" onclick="copyToClipboard('chart14', this)">📋 Copy to Clipboard</button>
-                </div>
-            </section>
-
-            <!-- Chart 15 -->
-            <section id="chart15" class="chart-section">
-                <div class="chart-wrapper">
-                    <div class="chart-container">
-                        <span class="chart-title">Government Dependency Index</span>
-                        <span class="chart-description">Measures the percentage of the population receiving means-tested federal aid (Medicaid, SNAP, EITC, etc.). Tracks the erosion of self-reliance and growth of welfare dependency.</span>
-                        <canvas id="chart15Canvas"></canvas>
-                    </div>
-                </div>
-                <div class="chart-analysis">
-                    <p>1 in 3 Americans now receives means-tested federal aid — up from 1 in 8. Medicaid expansion + EITC growth drove it.</p>
-                    <p>Worsening due to policy design. Impact: Erodes self-reliance, locks in voting blocs.</p>
-                    <p><strong>Sources:</strong> U.S. Census Bureau Survey of Income and Program Participation (SIPP); Heritage Foundation. Data: census.gov/programs-surveys/sipp; heritage.org/welfare/report/2013-index-dependence-government</p>
-                    <button class="copy-btn" onclick="copyToClipboard('chart15', this)">📋 Copy to Clipboard</button>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <p>Data sources: OMB, BEA, FRED, Federal Register, GPO, QuantGov (RegData), Census Bureau, BLS, OPM, CBO, Treasury, OpenSecrets.org</p>
-            <p>Last updated: November 2025</p>
+            </div>
+        </section>
+        <section class="mission-section">
+            <h2>Our Mission</h2>
+            <p>Political discourse has become a battleground of fear-mongering and partisan spin. Both Democrats and Republicans use selective data, cherry-picked anecdotes, and emotional manipulation to expand their power while convincing voters the other side is the "real threat."</p>
+            <p><strong>Political Data Hub</strong> cuts through the noise. We compile official government data, academic research, and verified statistics to show what's actually happeningnot what politicians want you to believe.</p>
+            <p>Every chart, every metric, every claim is sourced from official repositories: OMB, FRED, Census Bureau, CBO, GAO, OpenSecrets, and peer-reviewed research. No opinions. No spin. Just data.</p>
+            <p style="text-align: center; margin-top: 30px;"><a href="about.html" style="color: #3498db; font-weight: 600; text-decoration: none; font-size: 1.1em;">Learn more about our methodology </a></p>
+        </section>
+        <footer style="text-align: center; padding: 40px 20px; color: #bdc3c7; border-top: 1px solid #34495e; margin-top: 60px;">
+            <p style="margin-bottom: 10px;">All data sourced from official government repositories and academic research.</p>
+            <p style="margin-bottom: 20px;">No partisan funding. No political affiliations. Just data.</p>
+            <p style="font-size: 0.9em;"><a href="about.html" style="color: #3498db; text-decoration: none; margin: 0 15px;">About</a><a href="federal-power-index.html" style="color: #3498db; text-decoration: none; margin: 0 15px;">Federal Power Index</a></p>
+            <p style="margin-top: 20px; font-size: 0.85em; color: #7f8c8d;">Last updated: November 2025</p>
         </footer>
     </div>
-
-    <script src="charts.js"></script>
 </body>
 </html>

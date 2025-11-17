@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Political Data Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .about-hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.15) 0%, rgba(155, 89, 182, 0.15) 100%);
+            border-radius: 12px;
+            margin-bottom: 50px;
+            border-left: 5px solid #3498db;
+        }
+        .about-hero h1 {
+            font-size: 3em;
+            color: #fff;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .about-hero p {
+            font-size: 1.2em;
+            color: #ecf0f1;
+        }
+        .content-section {
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        .content-section h2 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+        .content-section p {
+            color: #555;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .content-section ul {
+            color: #555;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+        .content-section li {
+            margin-bottom: 10px;
+        }
+        .source-box {
+            background: #f8f9fa;
+            border-left: 4px solid #e74c3c;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .source-box strong {
+            color: #e74c3c;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .nav-bar {
+            background: rgba(44, 62, 80, 0.95);
+            padding: 15px 0;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .nav-bar a {
+            color: #ecf0f1;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .nav-bar a:hover {
+            color: #3498db;
+        }
+        @media (max-width: 768px) {
+            .about-hero { padding: 40px 15px; }
+            .about-hero h1 { font-size: 2em; }
+            .about-hero p { font-size: 1em; }
+            .content-section { padding: 30px 20px; }
+            .content-section h2 { font-size: 1.6em; }
+            .content-section p, .content-section ul { font-size: 1em; }
+            .nav-bar a { display: block; margin: 10px 0; }
+        }
+        @media (max-width: 480px) {
+            .about-hero { padding: 30px 10px; }
+            .about-hero h1 { font-size: 1.6em; }
+            .content-section { padding: 25px 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav-bar">
+            <a href="index.html">Home</a>
+            <a href="federal-power-index.html">Federal Power Index</a>
+            <a href="about.html">About</a>
+        </nav>
+        <section class="about-hero">
+            <h1>About Political Data Hub</h1>
+            <p>No spin. No bias. Just official data.</p>
+        </section>
+        <section class="content-section">
+            <h2>Our Mission</h2>
+            <p>American political discourse has devolved into a competition of fear. Democrats warn about authoritarian takeovers, Republicans warn about socialist dystopiasand both parties quietly expand federal power while you're distracted by culture war theater.</p>
+            <p><strong>Political Data Hub</strong> exists to cut through this noise. We compile official government data, academic research, and verified statistics to show what's <em>actually</em> happening in American politicsnot what campaign ads and partisan pundits want you to believe.</p>
+            <p>We don't take positions. We don't endorse candidates. We don't accept funding from political organizations. We just present the numbers and let you draw your own conclusions.</p>
+        </section>
+        <section class="content-section">
+            <h2>Our Methodology</h2>
+            <p>Every data point on this site comes from official, publicly accessible sources. We prioritize:</p>
+            <ul>
+                <li><strong>Government Agencies:</strong> Office of Management and Budget (OMB), Federal Reserve Economic Data (FRED), Census Bureau, Congressional Budget Office (CBO), Government Accountability Office (GAO)</li>
+                <li><strong>Legislative Records:</strong> Federal Register, Code of Federal Regulations, Congressional Research Service reports</li>
+                <li><strong>Independent Research:</strong> National Bureau of Economic Research (NBER), Mercatus Center regulatory data, peer-reviewed academic papers</li>
+                <li><strong>Transparency Organizations:</strong> OpenSecrets (campaign finance), USA Spending (federal contracts)</li>
+            </ul>
+            <p>All charts are normalized to a base year (typically 1975 = 1.0) to show growth trends independent of inflation or population changes. This allows direct comparison across metrics with different scales.</p>
+        </section>
+        <section class="content-section">
+            <h2>Data Sources by Topic</h2>
+            <div class="source-box">
+                <strong>Federal Power Index</strong>
+                <ul style="margin-top: 10px;">
+                    <li>Spending & Revenue: OMB Historical Tables (Table 1.2, 2.3)</li>
+                    <li>Regulations: Federal Register pages, CFR pages, Mercatus RegData restrictions index</li>
+                    <li>Debt: Treasury data via FRED</li>
+                    <li>Federal Employment: OPM FedScope database</li>
+                    <li>Wage Premium: CBO federal vs. private sector compensation studies</li>
+                    <li>Transfer Payments: OMB Table 11.3, FRED</li>
+                    <li>Lobbying: OpenSecrets lobbying database</li>
+                    <li>Programs: Census Bureau's Federal Programs by Agency survey</li>
+                </ul>
+            </div>
+            <div class="source-box">
+                <strong>Future Topics (Coming Soon)</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>Money in Politics:</strong> OpenSecrets, FEC campaign finance data, lobbying disclosures</li>
+                    <li><strong>Healthcare:</strong> CMS data, OECD health statistics, CDC health outcomes</li>
+                    <li><strong>Economic Policy:</strong> BLS employment data, Treasury tax data, FRED economic indicators</li>
+                    <li><strong>Immigration:</strong> DHS border data, EOIR asylum statistics, CBP enforcement data</li>
+                    <li><strong>Crime & Justice:</strong> FBI Uniform Crime Reports, BJS incarceration data, local police budgets</li>
+                </ul>
+            </div>
+        </section>
+        <section class="content-section">
+            <h2>What We're NOT</h2>
+            <p>We are <strong>not</strong> a political campaign, advocacy organization, or opinion platform. We don't tell you how to vote, which policies to support, or what conclusions to draw.</p>
+            <p>We are <strong>not</strong> funded by political parties, PACs, corporations, or partisan think tanks. This site is maintained independently.</p>
+            <p>We are <strong>not</strong> claiming neutrality is easy or that data tells the whole storybut we believe starting with accurate facts is better than starting with partisan talking points.</p>
+        </section>
+        <section class="content-section">
+            <h2>Contact & Contributions</h2>
+            <p>Find an error in our data? Have a suggestion for additional metrics? Want to verify our sources?</p>
+            <p>This project is open-source and transparent. All data processing scripts, source links, and methodology notes are available for review.</p>
+            <p style="text-align: center; margin-top: 30px;">
+                <a href="index.html" style="color: #3498db; font-weight: 600; text-decoration: none; font-size: 1.1em;"> Back to Homepage</a>
+            </p>
+        </section>
+        <footer style="text-align: center; padding: 40px 20px; color: #bdc3c7; border-top: 1px solid #34495e; margin-top: 60px;">
+            <p style="margin-bottom: 10px;">All data sourced from official government repositories and academic research.</p>
+            <p style="margin-bottom: 20px;">No partisan funding. No political affiliations. Just data.</p>
+            <p style="font-size: 0.9em;"><a href="about.html" style="color: #3498db; text-decoration: none; margin: 0 15px;">About</a><a href="federal-power-index.html" style="color: #3498db; text-decoration: none; margin: 0 15px;">Federal Power Index</a></p>
+            <p style="margin-top: 20px; font-size: 0.85em; color: #7f8c8d;">Last updated: November 2025</p>
+        </footer>
+    </div>
+</body>
+</html>
