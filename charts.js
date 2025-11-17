@@ -10,13 +10,13 @@ const colors = {
     orange: '#e67e22'
 };
 
-// Chart 0: Octopus Index
+// Chart 0: Federal Power Index
 const octopusConfig = {
     type: 'line',
     data: {
         labels: [1975, 1985, 1995, 2005, 2015, 2025],
         datasets: [{
-            label: 'Octopus Index (1975 = 1.0)',
+            label: 'Federal Power Index (1975 = 1.0)',
             data: [1.00, 1.44, 1.90, 2.29, 2.68, 3.07],
             borderColor: '#e74c3c',
             backgroundColor: 'rgba(231, 76, 60, 0.25)',
@@ -557,8 +557,8 @@ document.addEventListener('DOMContentLoaded', function() {
         Chart.defaults.plugins.legend.labels.usePointStyle = true;
     }
 
-    const octopusCtx = document.getElementById('octopusChart').getContext('2d');
-    new Chart(octopusCtx, octopusConfig);
+    const federalPowerCtx = document.getElementById('federal-powerChart').getContext('2d');
+    new Chart(federalPowerCtx, octopusConfig);
 
     const chart1Ctx = document.getElementById('chart1Canvas').getContext('2d');
     new Chart(chart1Ctx, chart1Config);
