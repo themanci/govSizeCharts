@@ -557,53 +557,61 @@ document.addEventListener('DOMContentLoaded', function() {
         Chart.defaults.plugins.legend.labels.usePointStyle = true;
     }
 
-    const federalPowerCtx = document.getElementById('federal-powerChart').getContext('2d');
-    new Chart(federalPowerCtx, octopusConfig);
+    const federalPowerElement = document.getElementById('federal-powerChart');
+    if (federalPowerElement) {
+        const federalPowerCtx = federalPowerElement.getContext('2d');
+        new Chart(federalPowerCtx, octopusConfig);
+    } else {
+        console.error('federal-powerChart element not found');
+    }
 
-    const chart1Ctx = document.getElementById('chart1Canvas').getContext('2d');
-    new Chart(chart1Ctx, chart1Config);
+    const chart1Element = document.getElementById('chart1Canvas');
+    if (chart1Element) {
+        const chart1Ctx = chart1Element.getContext('2d');
+        new Chart(chart1Ctx, chart1Config);
+    }
 
-    const chart2Ctx = document.getElementById('chart2Canvas').getContext('2d');
-    new Chart(chart2Ctx, chart2Config);
+    const chart2Element = document.getElementById('chart2Canvas');
+    if (chart2Element) new Chart(chart2Element.getContext('2d'), chart2Config);
 
-    const chart3Ctx = document.getElementById('chart3Canvas').getContext('2d');
-    new Chart(chart3Ctx, chart3Config);
+    const chart3Element = document.getElementById('chart3Canvas');
+    if (chart3Element) new Chart(chart3Element.getContext('2d'), chart3Config);
 
-    const chart4Ctx = document.getElementById('chart4Canvas').getContext('2d');
-    new Chart(chart4Ctx, chart4Config);
+    const chart4Element = document.getElementById('chart4Canvas');
+    if (chart4Element) new Chart(chart4Element.getContext('2d'), chart4Config);
 
-    const chart5Ctx = document.getElementById('chart5Canvas').getContext('2d');
-    new Chart(chart5Ctx, chart5Config);
+    const chart5Element = document.getElementById('chart5Canvas');
+    if (chart5Element) new Chart(chart5Element.getContext('2d'), chart5Config);
 
-    const chart6Ctx = document.getElementById('chart6Canvas').getContext('2d');
-    new Chart(chart6Ctx, chart6Config);
+    const chart6Element = document.getElementById('chart6Canvas');
+    if (chart6Element) new Chart(chart6Element.getContext('2d'), chart6Config);
 
-    const chart7Ctx = document.getElementById('chart7Canvas').getContext('2d');
-    new Chart(chart7Ctx, chart7Config);
+    const chart7Element = document.getElementById('chart7Canvas');
+    if (chart7Element) new Chart(chart7Element.getContext('2d'), chart7Config);
 
-    const chart8Ctx = document.getElementById('chart8Canvas').getContext('2d');
-    new Chart(chart8Ctx, chart8Config);
+    const chart8Element = document.getElementById('chart8Canvas');
+    if (chart8Element) new Chart(chart8Element.getContext('2d'), chart8Config);
 
-    const chart9Ctx = document.getElementById('chart9Canvas').getContext('2d');
-    new Chart(chart9Ctx, chart9Config);
+    const chart9Element = document.getElementById('chart9Canvas');
+    if (chart9Element) new Chart(chart9Element.getContext('2d'), chart9Config);
 
-    const chart10Ctx = document.getElementById('chart10Canvas').getContext('2d');
-    new Chart(chart10Ctx, chart10Config);
+    const chart10Element = document.getElementById('chart10Canvas');
+    if (chart10Element) new Chart(chart10Element.getContext('2d'), chart10Config);
 
-    const chart11Ctx = document.getElementById('chart11Canvas').getContext('2d');
-    new Chart(chart11Ctx, chart11Config);
+    const chart11Element = document.getElementById('chart11Canvas');
+    if (chart11Element) new Chart(chart11Element.getContext('2d'), chart11Config);
 
-    const chart12Ctx = document.getElementById('chart12Canvas').getContext('2d');
-    new Chart(chart12Ctx, chart12Config);
+    const chart12Element = document.getElementById('chart12Canvas');
+    if (chart12Element) new Chart(chart12Element.getContext('2d'), chart12Config);
 
-    const chart13Ctx = document.getElementById('chart13Canvas').getContext('2d');
-    new Chart(chart13Ctx, chart13Config);
+    const chart13Element = document.getElementById('chart13Canvas');
+    if (chart13Element) new Chart(chart13Element.getContext('2d'), chart13Config);
 
-    const chart14Ctx = document.getElementById('chart14Canvas').getContext('2d');
-    new Chart(chart14Ctx, chart14Config);
+    const chart14Element = document.getElementById('chart14Canvas');
+    if (chart14Element) new Chart(chart14Element.getContext('2d'), chart14Config);
 
-    const chart15Ctx = document.getElementById('chart15Canvas').getContext('2d');
-    new Chart(chart15Ctx, chart15Config);
+    const chart15Element = document.getElementById('chart15Canvas');
+    if (chart15Element) new Chart(chart15Element.getContext('2d'), chart15Config);
 });
 
 // Navigation scroll function
